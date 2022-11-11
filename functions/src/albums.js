@@ -18,3 +18,12 @@ export function createNewAlbums(req, res) {
     .then(doc => res.status(201).send({ success: true, message: "Album created:" + doc.id }))
     .catch(err => res.status(500).send({ success: false, message: err }));
 }
+
+export async function deleteAlbum(req, res) {
+  const { albumId } = req.params
+  const db = dbConnect()
+  const doc = await db.collection('albums').doc(albumId).delete()
+      .catch(err => res.status(500).send({ success: false, message: err }))
+  res.status(202).send({ success: true, message: 'Album Deleted' })
+}
+

@@ -1,13 +1,13 @@
-import functions from "firebase-functions";
-import express from "express";
-import cors from "cors";
-import { createNewAlbums, getAllAlbums } from "./src/albums.js";
+import functions from 'firebase-functions'
+import express from 'express'
+import cors from 'cors'
+import { createNewAlbum, getAllAlbums } from './src/albums.js'
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+const app = express()
+app.use(cors())
+app.use(express.json())
 
-app.get("/albums", getAllAlbums);
-app.post("/albums", createNewAlbums);
+app.get('/albums', getAllAlbums)
+app.post('/albums', createNewAlbum)
 
-export const api = functions.https.onRequest(app);
+export const api = functions.https.onRequest(app)
